@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chayan Deokar — Software Engineer @ Nokia | DevOps & Cloud</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A0F1E;
+    --navy-card: #111827;
+    --navy-light: #1E2A3A;
+    --blue: #3B82F6;
+    --blue-glow: rgba(59,130,246,0.15);
+    --blue-subtle: rgba(59,130,246,0.08);
+    --gold: #F59E0B;
+    --gold-subtle: rgba(245,158,11,0.12);
+    --white: #F0F4FF;
+    --muted: #94A3B8;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(59,130,246,0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--blue); color: white !important;
+    padding: 0.5rem 1.2rem; border-radius: 6px; transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 5% 5rem;
+  }
+  .spotlight {
+    position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse at top, rgba(59,130,246,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; text-align: center; max-width: 860px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue); border: 1px solid rgba(59,130,246,0.3);
+    padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.05; letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  h1 .accent { color: var(--blue); }
+  h1 .gold { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted);
+    line-height: 1.7; max-width: 600px; margin: 0 auto 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue); color: white; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 0.9rem; padding: 0.85rem 2rem;
+    border-radius: 8px; text-decoration: none; transition: transform 0.2s, opacity 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-outline {
+    background: transparent; color: var(--white); font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 0.9rem; padding: 0.85rem 2rem;
+    border-radius: 8px; text-decoration: none; border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s; letter-spacing: 0.02em;
+  }
+  .btn-outline:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 3rem; margin-top: 4rem;
+    padding-top: 3rem; border-top: 1px solid var(--border);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem; font-weight: 700; color: var(--white); display: block;
+  }
+  .stat-num span { color: var(--blue); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 7rem 5%; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.5rem;
+  }
+  .section-sub { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 540px; }
+  .max-w { max-width: 1200px; margin: 0 auto; }
+
+  /* ABOUT */
+  #about { background: var(--navy-card); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img-wrap {
+    position: relative; border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .about-img-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .avatar-icon {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: var(--blue-glow); border: 2px solid var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--blue);
+  }
+  .about-img-label { color: var(--muted); font-size: 0.85rem; }
+  .about-img-replace-hint {
+    position: absolute; bottom: 1rem; left: 0; right: 0; text-align: center;
+    font-size: 0.75rem; color: var(--blue); opacity: 0.7;
+  }
+  .about-skills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+  .skill-tag {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+    background: var(--blue-subtle); color: var(--blue);
+    border: 1px solid rgba(59,130,246,0.2); padding: 0.35rem 0.9rem; border-radius: 100px;
+  }
+
+  /* TOPICS */
+  #topics { }
+  .topics-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .topic-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 2rem; transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .topic-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+  .topic-icon {
+    font-size: 2rem; margin-bottom: 1.2rem; display: block;
+  }
+  .topic-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem;
+  }
+  .topic-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+  /* EVENTS */
+  #events { background: var(--navy-card); }
+  .events-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem; }
+  .events-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .event-item {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    align-items: center; gap: 1.5rem;
+    background: var(--navy); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s;
+  }
+  .event-item:hover { border-color: var(--border-hover); }
+  .event-date {
+    text-align: center; border-right: 1px solid var(--border); padding-right: 1.5rem;
+  }
+  .event-date .month {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue);
+  }
+  .event-date .day {
+    font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); line-height: 1;
+  }
+  .event-date .year { font-size: 0.75rem; color: var(--muted); }
+  .event-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .event-info .venue { font-size: 0.85rem; color: var(--muted); }
+  .event-info .venue span { color: var(--blue); }
+  .event-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .event-tag {
+    font-size: 0.72rem; font-weight: 500; padding: 0.25rem 0.7rem;
+    border-radius: 100px; border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .event-tag.featured { background: var(--gold-subtle); border-color: rgba(245,158,11,0.3); color: var(--gold); }
+
+  /* GALLERY */
+  #gallery { }
+  .gallery-intro { max-width: 600px; margin-bottom: 3.5rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+  .gallery-item {
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer; aspect-ratio: 4/3;
+    background: var(--navy-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.75rem; color: var(--muted);
+  }
+  .gallery-item:hover { border-color: var(--border-hover); transform: scale(1.02); }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item.tall { grid-row: span 2; aspect-ratio: auto; }
+  .gallery-item .gi-label { font-size: 0.8rem; text-align: center; }
+  .gallery-item .gi-icon { font-size: 2rem; opacity: 0.4; }
+
+  /* Upload hint */
+  .upload-note {
+    margin-top: 1.5rem; padding: 1rem 1.5rem;
+    background: var(--blue-subtle); border: 1px dashed rgba(59,130,246,0.3);
+    border-radius: 10px; font-size: 0.85rem; color: var(--muted); line-height: 1.6;
+  }
+  .upload-note strong { color: var(--blue); }
+
+  /* COLLEGES SLIDER */
+  #colleges { padding-top: 5rem; padding-bottom: 5rem; }
+  .colleges-intro { max-width: 640px; margin-bottom: 3rem; }
+  .slider-track-wrap {
+    overflow: hidden; position: relative; width: 100%;
+    mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  }
+  .slider-track {
+    display: flex; gap: 1.25rem; width: max-content;
+    animation: slide-left 28s linear infinite;
+  }
+  .slider-track-wrap:hover .slider-track { animation-play-state: paused; }
+  @keyframes slide-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .college-card {
+    flex: 0 0 auto; width: 240px;
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .college-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+  .college-photo {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 0.78rem; text-align: center; padding: 1rem;
+  }
+  .college-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .college-card-info { padding: 0.9rem 1.1rem 1.1rem; }
+  .college-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem; }
+  .college-loc { font-size: 0.78rem; color: var(--muted); }
+
+  /* YOUTUBE SECTION */
+  #youtube { background: var(--navy-card); }
+  .yt-hero {
+    display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    flex-wrap: wrap; margin-bottom: 3rem;
+    background: var(--navy); border: 1px solid var(--border);
+    border-radius: 18px; padding: 2.5rem;
+  }
+  .yt-hero-text { flex: 1 1 380px; }
+  .yt-hero-text h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.8rem;
+  }
+  .yt-hero-text p { color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .yt-subscribe-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: #FF0000; color: white; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 0.95rem; padding: 0.85rem 1.8rem;
+    border-radius: 8px; text-decoration: none; transition: transform 0.2s, opacity 0.2s;
+  }
+  .yt-subscribe-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+  .yt-hero-icon {
+    flex: 0 0 auto; width: 110px; height: 110px; border-radius: 50%;
+    background: rgba(255,0,0,0.1); border: 2px solid #FF0000;
+    display: flex; align-items: center; justify-content: center; font-size: 2.8rem;
+  }
+  .playlists-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .playlist-card {
+    background: var(--navy); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.75rem; text-decoration: none; color: var(--white);
+    display: flex; flex-direction: column; gap: 0.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .playlist-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+  .playlist-icon { font-size: 1.6rem; }
+  .playlist-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 600; }
+  .playlist-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .playlist-cta { font-size: 0.82rem; color: var(--blue); font-weight: 600; margin-top: auto; }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--navy-card); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+  .testimonial-card {
+    background: var(--navy); border: 1px solid var(--border);
+    border-radius: 14px; padding: 2rem; position: relative;
+    transition: border-color 0.2s;
+  }
+  .testimonial-card:hover { border-color: var(--border-hover); }
+  .quote-mark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 4rem; line-height: 1; color: var(--blue); opacity: 0.3;
+    position: absolute; top: 1rem; right: 1.5rem;
+  }
+  .testimonial-text { font-size: 0.95rem; line-height: 1.7; color: var(--muted); margin-bottom: 1.5rem; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--blue-glow); border: 1px solid rgba(59,130,246,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--blue);
+    flex-shrink: 0;
+  }
+  .author-name { font-weight: 600; font-size: 0.9rem; }
+  .author-role { font-size: 0.8rem; color: var(--muted); }
+
+  /* CONTACT */
+  #contact { }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--muted); margin-bottom: 0.5rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: var(--navy-card); border: 1px solid var(--border);
+    color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.95rem;
+    padding: 0.85rem 1rem; border-radius: 8px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--blue); }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); opacity: 0.6; }
+  .form-group select option { background: var(--navy-card); }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-submit {
+    background: var(--blue); color: white; border: none; cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem;
+    padding: 0.95rem 2rem; border-radius: 8px; transition: opacity 0.2s, transform 0.2s;
+    text-align: center; letter-spacing: 0.02em;
+  }
+  .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; padding-top: 1rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .ci-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--blue-subtle); border: 1px solid rgba(59,130,246,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .ci-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .ci-value { font-size: 0.95rem; color: var(--white); }
+  .ci-value a { color: var(--blue); text-decoration: none; }
+  .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+  .social-link {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--navy-card); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+  }
+  .social-link:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 5%; text-align: center;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 5%; }
+    .nav-links { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { gap: 1.5rem; }
+    .stat-num { font-size: 1.7rem; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    .gallery-item.wide { grid-column: span 1; }
+    .event-item { grid-template-columns: 60px 1fr; }
+    .event-tags { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Chayan<span>Deokar</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#colleges">Sessions</a></li>
+    <li><a href="#topics">Topics</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#youtube">YouTube</a></li>
+    <li><a href="#contact" class="nav-cta">Book Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="spotlight"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Software Engineer @ Nokia</div>
+    <h1>
+      Building <span class="accent">Cloud &amp; DevOps</span><br>
+      Systems That <span class="gold">Just Work</span>
+    </h1>
+    <p class="hero-sub">
+      I'm Chayan Deokar — a software engineer at Nokia and a DevOps/MLOps enthusiast who
+      loves turning messy infrastructure problems into clean, automated systems, and
+      teaching what I learn along the way.
+    </p>
+    <div class="hero-actions">
+      <a href="#about" class="btn-primary">More About Me →</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">2<span>x</span></span>
+        <span class="stat-label">Red Hat Certified</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1</span>
+        <span class="stat-label">YouTube Channel</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">MERN</span>
+        <span class="stat-label">Full Stack Dev</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">SFDC</span>
+        <span class="stat-label">Salesforce Dev</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="max-w about-grid">
+    <div class="about-img-wrap">
+      <img src="chayan-deokar.jpg" alt="Chayan Deokar speaking at an event, Software Engineer at Nokia" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div>
+      <p class="section-eyebrow">About Me</p>
+      <h2 class="section-title">Engineer. Automator.<br>Lifelong Learner.</h2>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:1.2rem;">
+        I'm Chayan Deokar, a Software Engineer at <strong style="color:var(--white)">Nokia</strong>,
+        working on building reliable, scalable systems for global connectivity. I'm a
+        <strong style="color:var(--white)">2x Red Hat Certified</strong> engineer with a strong pull
+        toward DevOps and MLOps — I like automating the parts of engineering that shouldn't
+        have to be done by hand.
+      </p>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:1.2rem;">
+        My background spans full-stack development with the <strong style="color:var(--white)">MERN
+        stack</strong>, Salesforce development, and infrastructure work with
+        <strong style="color:var(--white)">Terraform, OpenShift, and Big Data tools like Hadoop</strong>.
+        I enjoy sitting at the intersection of application code and the infrastructure that runs it.
+      </p>
+      <p style="color:var(--muted);line-height:1.8;">
+        Outside of my day job, I run <strong style="color:var(--white)">DevOps Insights</strong>, a
+        YouTube channel where I break down DevOps tools, tutorials, and real interview experiences —
+        because I believe the best way to learn something is to teach it to someone else.
+      </p>
+      <div class="about-skills">
+        <span class="skill-tag">DevOps & CI/CD</span>
+        <span class="skill-tag">MLOps</span>
+        <span class="skill-tag">Terraform</span>
+        <span class="skill-tag">OpenShift</span>
+        <span class="skill-tag">Big Data / Hadoop</span>
+        <span class="skill-tag">MERN Stack</span>
+        <span class="skill-tag">Salesforce Development</span>
+        <span class="skill-tag">Red Hat Certified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLEGES / CAMPUS SESSIONS -->
+<section id="colleges">
+  <div class="max-w">
+    <div class="colleges-intro">
+      <p class="section-eyebrow">Campus Sessions</p>
+      <h2 class="section-title">Colleges I've Spoken At</h2>
+      <p class="section-sub">Sessions and workshops delivered at colleges and student communities across India.</p>
+    </div>
+  </div>
+  <div class="slider-track-wrap">
+    <div class="slider-track">
+      <!-- Set 1 -->
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">MANIT Bhopal</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">MANIT Bhopal</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">IIIT Bhopal</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">IIIT Bhopal</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">Bansal College</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">Bansal College</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">DY Patil College</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">DY Patil College</div>
+          <div class="college-loc">India</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">LNCT Group of Colleges</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">LNCT Group of Colleges</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">SCALIVE</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">SCALIVE</div>
+          <div class="college-loc">India</div>
+        </div>
+      </div>
+      <!-- Set 2 (duplicate for seamless infinite loop) -->
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">MANIT Bhopal</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">MANIT Bhopal</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">IIIT Bhopal</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">IIIT Bhopal</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">Bansal College</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">Bansal College</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">DY Patil College</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">DY Patil College</div>
+          <div class="college-loc">India</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">LNCT Group of Colleges</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">LNCT Group of Colleges</div>
+          <div class="college-loc">Bhopal, MP</div>
+        </div>
+      </div>
+      <div class="college-card">
+        <div class="college-photo">Photo from session at<br><strong style="color:var(--white)">SCALIVE</strong></div>
+        <div class="college-card-info">
+          <div class="college-name">SCALIVE</div>
+          <div class="college-loc">India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="max-w">
+    <div class="upload-note" style="margin-top:2rem;">
+      <strong>To add your real photos:</strong> replace each <code>&lt;div class="college-photo"&gt;...&lt;/div&gt;</code> with
+      <code>&lt;div class="college-photo"&gt;&lt;img src="manit-session.jpg" alt="Session at MANIT Bhopal"&gt;&lt;/div&gt;</code>
+      once you save the photo files next to this HTML file. Send me the photos and I'll wire them in for you.
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section id="topics">
+  <div class="max-w">
+    <div class="topics-header">
+      <div>
+        <p class="section-eyebrow">Expertise</p>
+        <h2 class="section-title">What I Work On</h2>
+      </div>
+      <p class="section-sub" style="margin:0;max-width:340px;font-size:0.9rem;">
+        A mix of infrastructure, automation, and full-stack development — built up across roles and certifications.
+      </p>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card">
+        <span class="topic-icon">⚙️</span>
+        <h3>DevOps & CI/CD</h3>
+        <p>Designing automated build, test, and deployment pipelines that let teams ship faster and with fewer surprises.</p>
+      </div>
+      <div class="topic-card">
+        <span class="topic-icon">☁️</span>
+        <h3>Cloud & OpenShift</h3>
+        <p>Provisioning and managing infrastructure with Terraform and OpenShift — resilient, repeatable, and cloud-ready environments.</p>
+      </div>
+      <div class="topic-card">
+        <span class="topic-icon">🤖</span>
+        <h3>MLOps</h3>
+        <p>Bringing DevOps discipline to machine learning workflows — automating training, deployment, and monitoring pipelines.</p>
+      </div>
+      <div class="topic-card">
+        <span class="topic-icon">💻</span>
+        <h3>Full Stack Development</h3>
+        <p>Building end-to-end web applications with the MERN stack — from React front ends to Node/Express APIs and MongoDB.</p>
+      </div>
+      <div class="topic-card">
+        <span class="topic-icon">🔗</span>
+        <h3>Salesforce Development</h3>
+        <p>Building and customizing solutions on the Salesforce platform to fit real business workflows.</p>
+      </div>
+      <div class="topic-card">
+        <span class="topic-icon">📊</span>
+        <h3>Big Data & Hadoop</h3>
+        <p>Working with distributed data processing systems to handle and analyze large-scale datasets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="max-w">
+    <div class="events-header">
+      <div>
+        <p class="section-eyebrow">Milestones</p>
+        <h2 class="section-title">Career Highlights</h2>
+      </div>
+      <p class="section-sub" style="margin:0;font-size:0.9rem;max-width:300px">
+        Edit the dates/details below to match your exact timeline. <a href="#contact" style="color:var(--blue)">Want to collaborate?</a>
+      </p>
+    </div>
+    <div class="events-list">
+      <!-- ⚠️ Placeholder timeline — replace month/day/year and details with your exact dates -->
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">EDIT</div>
+          <div class="day">•</div>
+          <div class="year">2025</div>
+        </div>
+        <div class="event-info">
+          <h3>Joined Nokia as Software Engineer</h3>
+          <div class="venue">Nokia — <span>India</span></div>
+        </div>
+        <div class="event-tags">
+          <span class="event-tag featured">⭐ Career</span>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">EDIT</div>
+          <div class="day">•</div>
+          <div class="year">-</div>
+        </div>
+        <div class="event-info">
+          <h3>Launched "DevOps Insights" on YouTube</h3>
+          <div class="venue">YouTube — <span>Tutorials & Interview Prep</span></div>
+        </div>
+        <div class="event-tags">
+          <span class="event-tag">DevOps</span>
+          <span class="event-tag">Content</span>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">EDIT</div>
+          <div class="day">•</div>
+          <div class="year">-</div>
+        </div>
+        <div class="event-info">
+          <h3>Earned Red Hat Certification #2</h3>
+          <div class="venue">Red Hat — <span>Certification</span></div>
+        </div>
+        <div class="event-tags">
+          <span class="event-tag">Certification</span>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="month">EDIT</div>
+          <div class="day">•</div>
+          <div class="year">-</div>
+        </div>
+        <div class="event-info">
+          <h3>Earned Red Hat Certification #1</h3>
+          <div class="venue">Red Hat — <span>Certification</span></div>
+        </div>
+        <div class="event-tags">
+          <span class="event-tag">Certification</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="max-w">
+    <div class="gallery-intro">
+      <p class="section-eyebrow">Gallery</p>
+      <h2 class="section-title">Moments Worth Sharing</h2>
+      <p class="section-sub">Photos from work, events, and milestones over the years.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img src="chayan-deokar.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Chayan Deokar at an event">
+      </div>
+      <div class="gallery-item tall">
+        <div class="gi-icon">📸</div>
+        <div class="gi-label">Portrait / side shot</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gi-icon">👥</div>
+        <div class="gi-label">Audience / crowd photo</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gi-icon">💻</div>
+        <div class="gi-label">Workshop / live coding</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gi-icon">🤝</div>
+        <div class="gi-label">Networking / community</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gi-icon">🏆</div>
+        <div class="gi-label">Award / panel photo</div>
+      </div>
+    </div>
+    <div class="upload-note">
+      <strong>To add your photos:</strong> Open this HTML file, find each <code>&lt;div class="gallery-item"&gt;</code> and replace the placeholder content with:<br>
+      <code>&lt;img src="your-photo.jpg" style="width:100%;height:100%;object-fit:cover;" alt="..."&gt;</code>
+    </div>
+  </div>
+</section>
+
+<!-- COLLEGES / CAMPUS SESSIONS -->
+<!-- YOUTUBE -->
+<section id="youtube">
+  <div class="max-w">
+    <p class="section-eyebrow">Learn With Me</p>
+    <h2 class="section-title">On YouTube</h2>
+    <p class="section-sub" style="margin-bottom:2.5rem;">
+      I post free, structured learning series on Cloud and DevOps — come learn with me, starting with 30 Days of AWS Cloud.
+    </p>
+
+    <div class="yt-hero">
+      <div class="yt-hero-icon">▶️</div>
+      <div class="yt-hero-text">
+        <h3>Chayan Deokar — DevOps Insights</h3>
+        <p>
+          Tutorials, zero-to-hero series, and real interview experiences on DevOps, Cloud, and more.
+          Start with the <strong style="color:var(--white)">30 Days of AWS Cloud</strong> series, then explore Linux,
+          Terraform, and everything else I post.
+        </p>
+        <a href="https://www.youtube.com/@chayandeokar26" class="yt-subscribe-btn" target="_blank" rel="noopener">
+          ▶ Watch on YouTube
+        </a>
+      </div>
+    </div>
+
+    <div class="playlists-grid">
+      <a href="https://www.youtube.com/playlist?list=PL6RbEmZ5OjdUobl6iJjpWTtLVLQofOJEF" class="playlist-card" target="_blank" rel="noopener">
+        <div class="playlist-icon">🐧</div>
+        <h4>Linux: Zero to Hero</h4>
+        <p>A complete, structured series that takes you from Linux basics to confident day-to-day usage.</p>
+        <span class="playlist-cta">Watch playlist →</span>
+      </a>
+      <a href="https://www.youtube.com/playlist?list=PL6RbEmZ5OjdUezIU3x0-zSZ2Ua15__v-B" class="playlist-card" target="_blank" rel="noopener">
+        <div class="playlist-icon">☁️</div>
+        <h4>AWS: Zero to Hero</h4>
+        <p>Learn AWS Cloud from the ground up, including the 30 Days of AWS Cloud series.</p>
+        <span class="playlist-cta">Watch playlist →</span>
+      </a>
+      <a href="https://www.youtube.com/@chayandeokar26" class="playlist-card" target="_blank" rel="noopener" style="border-style:dashed;opacity:0.8;">
+        <div class="playlist-icon">➕</div>
+        <h4>More Coming Soon</h4>
+        <p>⚠️ Send me your third playlist link and I'll drop it right here.</p>
+        <span class="playlist-cta">Visit channel →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="max-w">
+    <p class="section-eyebrow">Recommendations</p>
+    <h2 class="section-title">What Colleagues Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">⚠️ Placeholder — paste a real recommendation from a manager, colleague, or LinkedIn here.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">?</div>
+          <div>
+            <div class="author-name">Name</div>
+            <div class="author-role">Role, Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">⚠️ Placeholder — paste a real recommendation from a manager, colleague, or LinkedIn here.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">?</div>
+          <div>
+            <div class="author-name">Name</div>
+            <div class="author-role">Role, Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">⚠️ Placeholder — paste a real recommendation from a manager, colleague, or LinkedIn here.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">?</div>
+          <div>
+            <div class="author-name">Name</div>
+            <div class="author-role">Role, Company</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="max-w">
+    <div class="contact-grid">
+      <div>
+        <p class="section-eyebrow">Get in Touch</p>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-sub" style="margin-bottom:2.5rem;">
+          Open to interesting conversations about DevOps, cloud, and full-stack engineering —
+          or just to connect. Reach out below.
+        </p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value"><a href="mailto:your-email@example.com">⚠️ Add your email</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Based In</div>
+              <div class="ci-value">India</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">💼</div>
+            <div>
+              <div class="ci-label">Currently</div>
+              <div class="ci-value">Software Engineer @ Nokia</div>
+            </div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/chayandeokar/" class="social-link" title="LinkedIn" target="_blank" rel="noopener">in</a>
+          <a href="https://github.com/chayandeokar" class="social-link" title="GitHub" target="_blank" rel="noopener">⌥</a>
+          <a href="https://www.youtube.com/channel/UCFd3EjUKGV0OPAsEkc7pAMg" class="social-link" title="YouTube" target="_blank" rel="noopener">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Priya Sharma">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="priya@yourcompany.com">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="e.g. Collaboration, Job Opportunity, Just Saying Hi">
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="What's on your mind?"></textarea>
+          </div>
+          <button class="form-submit" onclick="alert('Thanks! This form is a template — connect it to Formspree, Netlify Forms, or your preferred backend to actually receive messages.')">
+            Send Message →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <a href="https://www.linkedin.com/in/chayandeokar/" target="_blank" rel="noopener">Chayan Deokar</a> · Built with care · India</p>
+</footer>
+
+</body>
+</html>
